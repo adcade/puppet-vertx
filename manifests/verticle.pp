@@ -29,16 +29,6 @@ define vertx::verticle (
     before  => Service[$verticle_name],
   }
 
-  user { $user:
-    ensure => present,
-    before => Service[$verticle_name],
-  }
-
-  group { $group:
-    ensure => present,
-    before => Service[$verticle_name],
-  }
-
   file { $logdir:
     ensure => directory,
     owner  => $user,

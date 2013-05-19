@@ -35,6 +35,15 @@ class vertx (
     target  => "${instdir}/bin/vertx",
   }
 
+  user {"vertx":
+    ensure => present,
+    gid    => "vertx",
+  }
+
+  group {"vertx":
+    ensure => present,
+  }
+
   file { "/tmp/vertx.log":
     ensure => file,
     #owner  => "adcade",

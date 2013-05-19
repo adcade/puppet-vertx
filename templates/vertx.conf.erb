@@ -1,6 +1,6 @@
 LOG_DIR=<%= @logdir %>
 INIT_LOG=vertx.log
-JAR_FILE=<%= @jarfile %>
+CP=.<%- @cp.each do |c| %>:<%= c %><% end %>
 USER=<%= @user %>
 GROUP=<%= @group %>
 PID=/var/run/vertx.pid

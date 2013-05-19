@@ -27,9 +27,9 @@ end script
 script
   . /etc/<%= @verticle_name %>.conf
   OPTS="-Djava.ext.dirs=lib"
-  #chdir $APP_DIR
+  chdir $APP_DIR
   JAVA_OPTS="-Xms${XMS} -Xmx${XMX} -Xss${XSS} $OPTS"
-  exec su -s /bin/sh -c "/usr/local/bin/vertx run ${RUN} -cp ${JAR_FILE}:/etc/adcade/" $USER > ${LOG_DIR}/vertx.stdio 2>&1
+  exec su -s /bin/sh -c "/usr/local/bin/vertx run ${RUN} -cp ${CP}" $USER > ${LOG_DIR}/vertx.stdio 2>&1
 end script
 
 post-stop script

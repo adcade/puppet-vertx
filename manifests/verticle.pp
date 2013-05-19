@@ -1,14 +1,22 @@
 define vertx::verticle (
   $verticle_name = $title,
   $run,
-  $jarfile = "/usr/local/lib/adcade/bin/adserver.jar",
-  $user    = "vertx",
-  $group   = "vertx",
-  $logdir  = "/tmp/vertx",
-  $XMS     = '256M',
-  $XMX     = '1G',
-  $XSS     = '2048K',
+  $classpath = [],
+  $user      = "vertx",
+  $group     = "vertx",
+  $logdir    = "/tmp/vertx",
+  $XMS       = '256M',
+  $XMX       = '1G',
+  $XSS       = '2048K',
 ) {
+  include stdlib
+
+  if is_string($classpath) {
+    $cp = [$classpath]
+  } else {
+    $cp = $classpath
+  }
+
   file { "/etc/${verticle_name}.conf":
     ensure  => file,
     content => template("${module_name}/vertx.conf.erb"),

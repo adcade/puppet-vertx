@@ -14,8 +14,6 @@ class vertx (
   $instdir = "${dest}/${libname}"
   $buildpkgs = ["wget", "tar"]
 
-  include java7
-
   package { $buildpkgs:
     ensure => present,
   } ->

@@ -3,6 +3,8 @@ Exec {
 }
 exec {'apt-get update': } -> Package<||>
 
+Class['java7'] -> Class['vertx']
+include java7
 include vertx
 
 file { '/tmp/Server.java':

@@ -41,5 +41,6 @@ define vertx::verticle (
 
   service { $verticle_name:
     ensure  => running,
+    require => Class['vertx'],
   }
 }

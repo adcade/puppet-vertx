@@ -1,3 +1,4 @@
+
 define vertx::verticle (
   $verticle_name = $title,
   $run,
@@ -29,13 +30,15 @@ define vertx::verticle (
     before  => Service[$verticle_name],
   }
 
-  file { $logdir:
+  @file { $logdir:
     ensure => directory,
     owner  => $user,
     group  => $group,
     mode   => 666,
     before => Service[$verticle_name],
   }
+
+  realize File[$logdir]
 
   service { $verticle_name:
     ensure  => running,

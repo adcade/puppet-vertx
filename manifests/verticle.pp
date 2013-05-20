@@ -1,4 +1,3 @@
-
 define vertx::verticle (
   $verticle_name = $title,
   $run,
@@ -29,16 +28,6 @@ define vertx::verticle (
     content => template("${module_name}/vertx.init.erb"),
     before  => Service[$verticle_name],
   }
-
-  @file { $logdir:
-    ensure => directory,
-    owner  => $user,
-    group  => $group,
-    mode   => 666,
-    before => Service[$verticle_name],
-  }
-
-  realize File[$logdir]
 
   service { $verticle_name:
     ensure  => running,

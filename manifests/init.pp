@@ -16,11 +16,12 @@ class vertx (
 
   package { $buildpkgs:
     ensure => present,
-  } ->
+  }
 
   exec {"download_and_untar":
     provider => shell,
     command  => "wget -qO- ${url} | tar xzf - -C /tmp",
+    require  => Package[$buildpkgs],
   } ->
 
   file { $instdir:

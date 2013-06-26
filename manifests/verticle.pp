@@ -20,13 +20,13 @@ define vertx::verticle (
   file { "/etc/${verticle_name}.conf":
     ensure  => file,
     content => template("${module_name}/vertx.conf.erb"),
-    before  => Service[$verticle_name],
+    notify  => Service[$verticle_name],
   }
 
   file { "/etc/init/${verticle_name}.conf":
     ensure  => file,
     content => template("${module_name}/vertx.init.erb"),
-    before  => Service[$verticle_name],
+    notify  => Service[$verticle_name],
   }
 
   service { $verticle_name:

@@ -1,0 +1,8 @@
+name         'adcade-vertx'
+version      '0.1.0'
+summary      'Install Vert.x and Deploy verticles'
+description  'Install Vert.x and Deploy verticles'
+author       'Yangming Huang'
+license      'MIT'
+project_page 'https://github.com/Adcade/puppet-vertx'
+dependency   'puppetlabs/stdlib'

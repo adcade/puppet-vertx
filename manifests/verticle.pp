@@ -4,7 +4,7 @@ define vertx::verticle (
   $classpath = [],
   $user      = "vertx",
   $group     = "vertx",
-  $logdir    = "/tmp/vertx",
+  $logfile   = "/tmp/verticle.stdio",
   $XMS       = '256M',
   $XMX       = '1G',
   $XSS       = '2048K',

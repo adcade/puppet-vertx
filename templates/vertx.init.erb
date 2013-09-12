@@ -1,7 +1,7 @@
 # Vert.x upstart script
 # 2013 - rterhaar@atlanticdynamic.com for Adcade
 #
-description "start and stop the AdCade Vert.x server"
+description "start and stop the Adcade Vert.x server"
 version "1.0"
 author "Rob Terhaar"
 author "Yangming Huang"
@@ -19,9 +19,11 @@ respawn
 
 pre-start script
   . /etc/<%= @verticle_name %>.conf
-  rm -rf $LOG_DIR
-  mkdir -p -m0755 $LOG_DIR
-  chown $USER:$GROUP $LOG_DIR
+  if [ ${LOG_FILE} -ne "/dev/null" ]; then
+    rm -f ${LOG_FILE}
+    touch ${LOG_FILE}
+    chown $USER:$GROUP ${LOG_FILE}
+  fi
 end script
 
 script
@@ -29,7 +31,7 @@ script
   OPTS="-Djava.ext.dirs=lib"
   chdir $APP_DIR
   JAVA_OPTS="-Xms${XMS} -Xmx${XMX} -Xss${XSS} $OPTS"
-  exec su -s /bin/sh -c "/usr/local/bin/vertx run ${RUN} -cp ${CP}" $USER > ${LOG_DIR}/vertx.stdio 2>&1
+  exec su -s /bin/sh -c "/usr/local/bin/vertx run ${RUN} -cp ${CP}" $USER > ${LOG_FILE} 2>&1
 end script
 
 post-stop script
